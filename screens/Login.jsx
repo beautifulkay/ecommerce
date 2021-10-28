@@ -1,8 +1,23 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React from "react";
+import { View, StyleSheet, SafeAreaView, Text } from "react-native";
 
 export const Login = ({}) => {
-    return <View></View>
-}
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>SIGN IN</Text>
+    </SafeAreaView>
+  );
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+    height: "100%",
+  },
+
+  text: {
+    textAlign: "left",
+    fontWeight: "bold",
+    fontSize: 46,
+  },
+});

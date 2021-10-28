@@ -1,5 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
+// import AppLoading from 'expo-app-loading';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Screens } from "./navigations/screens";
 import { Home } from "./screens/Home";
@@ -11,9 +12,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={Screens.LOGIN}>
+      <Stack.Navigator initialRouteName={Screens.Login}>
         <Stack.Screen name={Screens.Home} component={Home} />
-        <Stack.Screen name={Screens.Login} component={Login} />
+        <Stack.Screen name={Screens.Login} component={Login} options={{headerShown:false}} />
         <Stack.Screen name={Screens.ProductDetail} component={ProductDetail} />
         <Stack.Screen name={Screens.Cart} component={Cart} />
       </Stack.Navigator>
