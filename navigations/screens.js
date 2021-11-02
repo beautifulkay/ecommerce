@@ -3,4 +3,5 @@ export const Screens = {
   Login: "Login",
   Cart: "Cart",
   ProductDetail: "ProducDetail",
+  Store: "Store",
 };

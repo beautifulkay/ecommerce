@@ -6,7 +6,6 @@ import { Screens } from "./navigations/screens";
 import { Home } from "./screens/Home";
 import { Login } from "./screens/Login";
 import { ProductDetail } from "./screens/ProductDetail";
-import { Cart } from "./screens/Cart";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   useFonts,
@@ -33,7 +32,11 @@ export default function App() {
       <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName={Screens.Login}>
-            <Stack.Screen name={Screens.Home} component={Home} />
+            <Stack.Screen
+              name={Screens.Home}
+              component={Home}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name={Screens.Login}
               component={Login}
@@ -43,7 +46,6 @@ export default function App() {
               name={Screens.ProductDetail}
               component={ProductDetail}
             />
-            <Stack.Screen name={Screens.Cart} component={Cart} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
