@@ -17,6 +17,7 @@ export const Home = ({}) => {
         options={{
           headerTitleAlign: "left",
           headerTitleStyle: { fontFamily: "Poppins_700Bold", fontSize: 25 },
+          headerShadowVisible:false,
           tabBarIcon: ({ focused }) => (
             <MaterialIcons
               name="grid-view"
@@ -30,6 +31,7 @@ export const Home = ({}) => {
         name={Screens.Cart}
         component={Cart}
         options={{
+          headerShadowVisible:false,
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name="md-cart-outline"

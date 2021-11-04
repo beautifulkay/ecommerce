@@ -24,7 +24,7 @@ export const Login = ({ navigation }) => {
         source={require("../assets/Vector.png")}
         style={{
           width: "100%",
-          height: "37%",
+          height: "40%",
           paddingLeft: 20,
           paddingTop: 20,
         }}
