@@ -8,6 +8,7 @@ import {
   ImageBackground,
 } from "react-native";
 import { Screens } from "../navigations/screens";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const Login = ({ navigation }) => {
   const [username, setUsername] = useState();
@@ -19,7 +20,7 @@ export const Login = ({ navigation }) => {
     navigation.navigate(Screens.Home);
   }
   return (
-    <View style={styles.container} edges={["top"]}>
+    <KeyboardAwareScrollView contentContainerStyle={styles.container}  resetScrollToCoords={{x:0,y:0}} scrollEnabled={false}>
       <ImageBackground
         source={require("../assets/Vector.png")}
         style={{
@@ -66,7 +67,7 @@ export const Login = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 const Label = function ({ title }) {
