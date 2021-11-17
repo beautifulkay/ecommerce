@@ -1,88 +1,100 @@
-import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TextInput,
-  Modal,
-  TouchableOpacity,
-} from "react-native";
-import { Feather ,AntDesign} from "@expo/vector-icons";
+import React from "react";
+import { View, StyleSheet, Text, FlatList, ScrollView } from "react-native";
+import { ProductItem } from "../components/ProductItem";
+import { products } from "../utils";
 
-export const Shop = ({}) => {
-  const [modal, setModal] = useState(false);
+export const Shop = () => {
   return (
     <View style={styles.container}>
-      <SearchModal modal={modal} setModal={setModal} />
-      <TouchableOpacity
-        onPress={function () {
-          setModal(true);
-        }}
-      >
-         <View style= {styles.inputContainer} >
-         <Text>hiii</Text>
-         </View> 
-      </TouchableOpacity>
+      <View style={styles.captionContainer}>
+        <Text style={{ color: "A4a3a3", fontSize: 17 }}>The World's </Text>
+        <Text
+          style={{
+            color: "#75BA8B",
+            fontSize: 23,
+            fontWeight: "bold",
+            marginBottom: -1,
+          }}
+        >
+          Best Bike
+        </Text>
+      </View>
+      <Tabs />
+      <View style={styles.productListContainer}>
+        <FlatList
+          keyExtractor={(item) => `${item.id}`}
+          data={products}
+          numColumns={2}
+          ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+          columnWrapperStyle={{ justifyContent: "space-between" }}
+          style={styles.productList}
+          renderItem={({ item }) => (
+            <ProductItem key={item.id} product={item} />
+          )}
+        />
+      </View>
     </View>
   );
 };
-const SearchModal = ({ modal, setModal }) => {
-  const [search, setSearch] = useState();
-
+export const Tabs = ({}) => {
+  const categories = ["All", "Road bike", "Mountain", "Urban bike"];
   return (
-    <Modal
-      visible={modal}
-      onRequestClose={function () {
-        setModal(false);
-      }}
-    >
-      <View style={{flexDirection:'row', height: "100%", width: "100%", marginLeft: 10 }}>
-      <AntDesign name="arrowleft" size={24} color="black" />
-        <TouchableOpacity style={{}}>
-        </TouchableOpacity>
-      <View style={styles.inputContainer}>
-        <Feather name="search" size={20} color="black" />
-        <TextInput
-          value={search}
-          onChangeText={(text) => setSearch(text)}
-          placeholder="Search for products"
-          style={{ height: "100%", width: "100%", marginLeft: 10 }}
-        />
-      </View>
-      </View>
-    </Modal>
+    <View style={styles.container}>
+      <Text style={{ fontWeight: "bold", fontSize: 17 }}>Categories</Text>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        horizontal={true}
+        style={{ width: "100%", marginTop: 15 }}
+      >
+        {categories.map((category, index) => {
+          return <TabItem title={category} index={index} key={index} />;
+        })}
+      </ScrollView>
+    </View>
+  );
+};
+
+const TabItem = ({ title, index }) => {
+  const active = index === 0 ? styles.active : styles.text;
+  return (
+    <View style={styles.tabItem}>
+      <Text style={active}>{title}</Text>
+    </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
-    backgroundColor: "white",
+    flex: 1,
+    backgroundColor: "#ffffff",
   },
-  inputContainer: {
-    backgroundColor: "#F9F9F9",
-    height: "8%",
-    marginHorizontal: "5%",
-    borderRadius: 8,
+  captionContainer: {
     flexDirection: "row",
-    alignItems: "center",
+    marginTop: 20,
+    alignItems: "flex-end",
+    marginLeft: 10,
+  },
+  productListContainer: {
+    height: "83%",
+    paddingRight: 10,
+  },
+  productList: {
+    marginTop: 25,
+    marginLeft: 10,
+  },
+  container: {
     paddingLeft: 10,
-    marginTop: 10,
+    marginTop: 23,
   },
-  backButton: {
-    width:'26%',
-    height: "27%",
-    marginTop:'100%'
-  },
-  searchButton: {
-    borderColor: 'gray',
-    borderWidth: '1',
-    alignSelf: "center",
-    marginTop: "2%",
-    padding: "5%",
-    width: "80%",
-    borderRadius: 30,
+  tabItem: {
+    backgroundColor: "#ffffff",
+    height: 40,
+    justifyContent: "center",
     alignItems: "center",
+    marginRight: 12,
     flexDirection: "row",
-    marginBottom: "15%",
-  }
+    paddingHorizontal: 20,
+    borderRadius: 12,
+  },
+  text: { color: "#A4a3a3", fontWeight: "500" },
+  active: { color: "#75BA8B", fontWeight: "700" },
 });
